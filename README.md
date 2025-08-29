@@ -100,7 +100,6 @@ This demonstrates how Red interprets commands, executes them safely, and provide
 ## Deployment
 
 * Manual server setup and SSL configuration for secure deployment.
-* Modular integration with Python and Gemini 2.5 API for real-time command execution.
 * Designed for robust Linux environments with minimal downtime.
 
 ## Contributing
