@@ -115,4 +115,4 @@ Submit a pull request with your proposed changes, and include test cases or exam
 
 ## License
 
-This project is open for personal, educational, and research purposes. For commercial use, please contact the author for licensing.
+This project is open for personal, educational, and research purposes.
