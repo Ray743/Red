@@ -26,7 +26,7 @@ This project is designed to fine-tune a model to function as a command-line inte
 
 ### Dataset
 
-The `advance_train.json` dataset contains an array of command objects. Each object includes:
+The `LINUX_DATASET.jsonl` dataset contains an array of command objects. Each object includes:
 
 * `instruction`: The command or query that the user might provide.
 * `response`: The expected assistant output or guidance.
