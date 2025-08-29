@@ -15,7 +15,7 @@ This project is designed to fine-tune a model to function as a command-line inte
 ```
 .
 ├── data/
-│   └── advance_train.json        # Dataset for fine-tuning, including commands, responses, context, and compatibility info
+│   └── LINUX_DATASET.jsonl        # Dataset for fine-tuning, including commands, responses, context, and compatibility info
 ├── src/
 │   └── train.py                  # Main script for training the CLI assistant model
 ├── configs/
@@ -54,7 +54,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-1. Prepare your dataset (`data/advance_train.json`) with all necessary commands and context.
+1. Prepare your dataset (`data/LINUX_DATASET.jsonl`) with all necessary commands and context.
 2. Adjust the fine-tuning parameters in `configs/finetune_config.yaml` as needed.
 3. Run the training script:
 
