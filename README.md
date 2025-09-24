@@ -60,6 +60,26 @@ Example (simplified):
 
 ---
 
+## Requirements
+
+The project relies on common machine learning and NLP libraries to handle dataset preparation, fine-tuning, and evaluation:
+
+* **tensorflow==2.10.0** → Backend deep learning framework used for training and fine-tuning.
+* **transformers==4.21.1** → Hugging Face Transformers library for model architectures (e.g., GPT, BERT).
+* **datasets==2.4.0** → Efficient dataset loading, splitting, and preprocessing.
+* **scikit-learn==1.0.2** → Utilities for evaluation (metrics, train-test splits, preprocessing).
+* **pandas==1.4.2** → Data manipulation and preprocessing for dataset curation.
+* **numpy==1.21.6** → Core numerical computations used across the pipeline.
+* **pyyaml==6.0** → YAML configuration file parsing (used for training configs).
+
+Install dependencies with:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
 ## Training (Planned)
 
 1. Place curated dataset under `data/LINUX_DATASET.jsonl`.
