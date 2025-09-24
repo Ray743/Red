@@ -1,117 +1,99 @@
-# Al-Powered Linux Assistant Fine-Tune Project (“Red”)
+# AI-Powered Linux Assistant Fine-Tune Project (“Red”) 🚧 *(Work in Progress)*
 
-This project is designed to fine-tune a model to function as a command-line interface (CLI) assistant named **“Red”**. Red is an AI-powered Linux assistant capable of performing system tasks, executing terminal commands, and providing contextual guidance in real-time.
+This repository is an **early-stage project** to fine-tune a model into functioning as a command-line interface (CLI) assistant named **“Red”**.
+Red is intended to become an AI-powered Linux assistant capable of understanding natural language, mapping it to Linux commands, and providing guidance in real-time.
 
-## Features
+⚠️ **Note:** The application is **not complete**. The dataset is still being expanded and refined, and training scripts are under active development.
 
-* Modular AI assistant architecture for Linux automation.
-* Executes terminal commands safely and efficiently.
-* Provides context-aware guidance using natural language understanding.
-* Supports command routing, follow-up instructions, and tool recommendations.
-* Compatible with multiple Linux distributions and configurable for different OS environments.
+---
 
-## Project Structure
+## Current Goals
+
+* Collect and curate Linux CLI command–response pairs.
+* Build a dataset with contextual tags, tool usage, and OS compatibility.
+* Prepare a training-ready structure for fine-tuning.
+* Experiment with training configurations to evaluate Red’s potential.
+
+---
+
+## Project Structure (So Far)
 
 ```
 .
 ├── data/
-│   └── LINUX_DATASET.jsonl        # Dataset for fine-tuning, including commands, responses, context, and compatibility info
+│   └── LINUX_DATASET.jsonl        # WIP dataset for fine-tuning
 ├── src/
-│   └── train.py                  # Main script for training the CLI assistant model
+│   └── train.py                   # Placeholder training script
 ├── configs/
-│   └── finetune_config.yaml      # Fine-tuning configuration settings
-├── requirements.txt              # Project dependencies
-└── README.md                     # Project documentation
+│   └── finetune_config.yaml       # Initial fine-tuning config (subject to change)
+├── requirements.txt               # Dependencies for training experiments
+└── README.md                      # Project documentation (this file)
 ```
 
-### Dataset
+---
 
-The `LINUX_DATASET.jsonl` dataset contains an array of command objects. Each object includes:
+## Dataset (Work in Progress)
 
-* `instruction`: The command or query that the user might provide.
-* `response`: The expected assistant output or guidance.
-* `mission_tag`: Categorization of the command for routing purposes.
-* `context`: Relevant system or situational context for the command.
-* `tools`: Tools or utilities required to execute the command.
-* `os_compatibility`: Supported operating systems.
-* `follow_up`: Optional suggestions or follow-up actions for the user.
+The dataset is still being collected and improved. Each record is structured as:
 
-### Source Code
+* **instruction**: The natural language command/query.
+* **response**: The expected assistant output or explanation.
+* **mission\_tag**: A category label for routing (e.g., "system", "network").
+* **context**: Optional context about the system/environment.
+* **tools**: Required utilities/tools (e.g., `apt`, `top`, `systemctl`).
+* **os\_compatibility**: Supported distributions.
+* **follow\_up**: Suggested next actions for the user.
 
-* **`train.py`**: Handles the fine-tuning of the model using the dataset. Supports custom configurations for batch size, learning rate, and number of epochs.
+Example (simplified):
 
-### Configuration
-
-* **`finetune_config.yaml`**: Defines hyperparameters, model architecture options, and training preferences. Adjust to customize the fine-tuning process.
-
-### Dependencies
-
-Install required dependencies:
-
-```bash
-pip install -r requirements.txt
+```json
+{
+  "instruction": "check disk usage",
+  "response": "Filesystem      Size  Used Avail Use% Mounted on...",
+  "mission_tag": "system",
+  "context": "User monitoring storage",
+  "tools": ["df"],
+  "os_compatibility": ["Ubuntu", "Debian", "Fedora"],
+  "follow_up": "Suggest cleaning unused packages"
+}
 ```
 
-## Usage
+---
 
-1. Prepare your dataset (`data/LINUX_DATASET.jsonl`) with all necessary commands and context.
-2. Adjust the fine-tuning parameters in `configs/finetune_config.yaml` as needed.
+## Training (Planned)
+
+1. Place curated dataset under `data/LINUX_DATASET.jsonl`.
+2. Adjust parameters in `configs/finetune_config.yaml`.
 3. Run the training script:
 
 ```bash
 python src/train.py
 ```
 
-4. After training, deploy the model to your server or local environment. Red will be able to respond to Linux CLI commands in real-time.
+*(Training scripts and configs are experimental and may change as the project evolves.)*
 
-## Quick Start Example
+---
 
-After deployment, you can interact with Red like a real terminal assistant:
+## Next Steps
 
-```bash
-$ red
-Red CLI Assistant v1.0
-Type 'help' for commands or 'exit' to quit.
+* Expand dataset with broader coverage of Linux commands.
+* Refine fine-tuning process for consistency.
+* Add evaluation scripts to test command accuracy and safety.
 
-> check disk usage
-Red: Checking disk usage...
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/sda1       50G   20G   28G  42% /
-
-> update system
-Red: Running system update...
-All packages are up to date.
-
-> create user "alice"
-Red: Creating new user 'alice'...
-User 'alice' successfully created.
-
-> help
-Red: You can ask me to:
-- Check system resources
-- Manage users
-- Install or update packages
-- Monitor running processes
-- And much more...
-```
-
-This demonstrates how Red interprets commands, executes them safely, and provides helpful output.
-
-## Deployment
-
-* Manual server setup and SSL configuration for secure deployment.
-* Designed for robust Linux environments with minimal downtime.
+---
 
 ## Contributing
 
-Contributions are welcome! You can:
+Contributions are welcome, but since this is still a **WIP**, the focus is on:
 
-* Add more command-response pairs to improve Red’s capabilities.
-* Optimize model performance for faster response times.
-* Integrate additional tools or system utilities.
+* Adding realistic command-response data.
+* Improving dataset quality and diversity.
+* Suggesting improvements to the training setup.
 
-Submit a pull request with your proposed changes, and include test cases or examples to ensure proper functionality.
+---
 
 ## License
 
-This project is open for personal, educational, and research purposes.
+This project is currently open for **educational and research purposes** only.
+
+---
